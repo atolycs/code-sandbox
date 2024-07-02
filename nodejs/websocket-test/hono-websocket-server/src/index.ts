@@ -24,12 +24,14 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-const port = 3000
+const port = 8787
 console.log(`Server is running on port ${port}`)
 
 export type WebSocketApp = typeof wsApps
 
-serve({
+const server = serve({
   fetch: app.fetch,
   port
 })
+
+injectWebSocket(server)
